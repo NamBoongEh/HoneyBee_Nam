@@ -74,22 +74,23 @@
 	</div>
 	관심지역은 최대 3개까지 설정 가능합니다.<br>
 	
-	<div class="hobbyBox">
+	<div id="hobbyBox">
 	
 	</div>
 	<br>
 	관심 주제 <!-- 관심 지역과 상황 동일/ 단 여기는 checkbox 이용으로 좀 더 쉬울 예정. --><br>
 	모임<br>
-	<input type="checkbox" id="hobby0" value="교육" onclick="goHobbyBox()"> 교육 <br>
-	<input type="checkbox" id="hobby1" value="세미나/컨퍼런스" onclick="goHobbyBox()"> 세미나/컨퍼런스 <br>
-	<input type="checkbox" id="hobby2" value="강연" onclick="goHobbyBox()"> 강연 <br>
-	<input type="checkbox" id="hobby3" value="취미/소모임" onclick="goHobbyBox()"> 취미/소모임 <br>
-	<input type="checkbox" id="hobby4" value="문화/예술/방송" onclick="goHobbyBox()"> 문화/예술/방송 <br>
-	<input type="checkbox" id="hobby5" value="공모전" onclick="goHobbyBox()"> 공모전 <br>
-	<input type="checkbox" id="hobby6" value="전시/박람회" onclick="goHobbyBox()"> 전시/박람회 <br>
-	<input type="checkbox" id="hobby7" value="이벤트/파티" onclick="goHobbyBox()"> 이벤트/파티 <br>
-	<input type="checkbox" id="hobby8" value="패션/뷰티" onclick="goHobbyBox()"> 패션/뷰티 <br>
-	<input type="checkbox" id="hobby9" value="기타" onclick="goHobbyBox()"> 기타 <br>
+	<!-- onclick hobby+숫자로 이루어져있어서 리팩토링 가능 -->
+	<input type="checkbox" id="hobby0" value="교육" onclick="goHobbyBox('hobby0')"> 교육 <br>
+	<input type="checkbox" id="hobby1" value="세미나/컨퍼런스" onclick="goHobbyBox('hobby1')"> 세미나/컨퍼런스 <br>
+	<input type="checkbox" id="hobby2" value="강연" onclick="goHobbyBox('hobby2')"> 강연 <br>
+	<input type="checkbox" id="hobby3" value="취미/소모임" onclick="goHobbyBox('hobby3')"> 취미/소모임 <br>
+	<input type="checkbox" id="hobby4" value="문화/예술/방송" onclick="goHobbyBox('hobby4')"> 문화/예술/방송 <br>
+	<input type="checkbox" id="hobby5" value="공모전" onclick="goHobbyBox('hobby5')"> 공모전 <br>
+	<input type="checkbox" id="hobby6" value="전시/박람회" onclick="goHobbyBox('hobby6')"> 전시/박람회 <br>
+	<input type="checkbox" id="hobby7" value="이벤트/파티" onclick="goHobbyBox('hobby7')"> 이벤트/파티 <br>
+	<input type="checkbox" id="hobby8" value="패션/뷰티" onclick="goHobbyBox('hobby8')"> 패션/뷰티 <br>
+	<input type="checkbox" id="hobby9" value="기타" onclick="goHobbyBox('hobby9')"> 기타 <br>
 	
 	<!-- 홈이나 다른곳으로 이동하기위한 단추 -->
 	<!-- 취소 버튼을 누르면 어디로 이동 할 것인가? -->
@@ -97,12 +98,25 @@
 	<button onclick="location.href='signupAction'">다음</button>
 </body>
 
+	<!-- 관심 주제 checkbox이벤트 시작 -->
 	<script>
-		function goHobbyBox(){
-			console.log(document.getElementById());
+		function goHobbyBox(id){
+			let btn = document.getElementById(id);
+			let content = document.createElement("button");
+			let target = document.getElementById("hobbyBox");
+			
+			content.id = id;
+			content.innerHTML = btn.value;
+			content.onclick = remove(id);
+			target.appendChild(content);
+		}
+		function remove(){
+			
 		}
 	</script>
+	<!-- 관심 주제 checkbox이벤트 종료 -->
 
+	<!-- 시군구 추가 메서드 2개 시작 -->
 	<script>
 	// 현재 문제점 : 시도 셀렉트 창을 선택시, 1:1 대응으로 군구 셀렉트 창이 대응되지 않는다.
 	// 현재 단추는 제대로 인식함.
@@ -139,6 +153,7 @@
 		}
 	}
 	</script>
+	<!-- 시군구 추가 메서드 2개 종료 -->
 	
 </html>
 <%@include file="include/footer.jsp" %>
