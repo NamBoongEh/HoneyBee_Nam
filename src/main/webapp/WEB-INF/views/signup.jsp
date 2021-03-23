@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
+
 <body>
-	<h1>회원가입</h1>
-	<br>
-	
 	<h2>필수정보</h2>
 	<br>
 	
@@ -53,35 +52,93 @@
 	관심 지역 <!-- select에서 클릭을 둘 다 하면 완성되어서 이 옆에 select가 옮겨가는 식으로? 아니면 단추가 생기는 식으로 옮겨간다.(팀원들에게 조언 구하기) --><br>
 	지역
 	<!-- 클릭하면 관심 지역이 추가되는 +버튼 -버튼도 있어야한다. -->
-	<button>+</button><select name="location">
+	<div id="locationAdd">
+	<button onclick="add()">+</button>
+	
+	<select id="location" onchange="addSelect(this)">
 	<!-- 이거 어떻게 나눠야하는지 사회 잘하는 사람들에게 물어보기 value 값에 따라 if문으로 일치시 다른 selcet 박스가 나오게 한다. -->
-		<option value="city">서울특별시</option>
-		<option value="city">경기도</option>
-		<option value="city">대구광역시</option>
-		<option value="city">인천광역시</option>
-		<option value="city">광주광역시</option>
-		<option value="city">대전광역시</option>
-		<option value="city">울산광역시</option>
-	</select><br>
+		<option>--도시를 선택해주세요--</option>
+		<option value="0">서울특별시</option>
+		<option value="1">경기도</option>
+		<option value="2">대구광역시</option>
+		<option value="3">인천광역시</option>
+		<option value="4">광주광역시</option>
+		<option value="5">대전광역시</option>
+		<option value="6">울산광역시</option>
+	</select>
+	
+	<select id="locationSub">
+		<option>--지역구를 선택해주세요</option>
+	</select>
+	<br>
+	</div>
 	관심지역은 최대 3개까지 설정 가능합니다.<br>
 	
+	<div class="hobbyBox">
+	
+	</div>
 	<br>
 	관심 주제 <!-- 관심 지역과 상황 동일/ 단 여기는 checkbox 이용으로 좀 더 쉬울 예정. --><br>
 	모임<br>
-	<input type="checkbox"> 교육 <br>
-	<input type="checkbox"> 세미나/컨퍼런스 <br>
-	<input type="checkbox"> 강연 <br>
-	<input type="checkbox"> 취미/소모임 <br>
-	<input type="checkbox"> 문화/예술/방송 <br>
-	<input type="checkbox"> 공모전 <br>
-	<input type="checkbox"> 전시/박람회 <br>
-	<input type="checkbox"> 이벤트/파티 <br>
-	<input type="checkbox"> 패션/뷰티 <br>
-	<input type="checkbox"> 기타 <br>
+	<input type="checkbox" id="hobby0" value="교육" onclick="goHobbyBox()"> 교육 <br>
+	<input type="checkbox" id="hobby1" value="세미나/컨퍼런스" onclick="goHobbyBox()"> 세미나/컨퍼런스 <br>
+	<input type="checkbox" id="hobby2" value="강연" onclick="goHobbyBox()"> 강연 <br>
+	<input type="checkbox" id="hobby3" value="취미/소모임" onclick="goHobbyBox()"> 취미/소모임 <br>
+	<input type="checkbox" id="hobby4" value="문화/예술/방송" onclick="goHobbyBox()"> 문화/예술/방송 <br>
+	<input type="checkbox" id="hobby5" value="공모전" onclick="goHobbyBox()"> 공모전 <br>
+	<input type="checkbox" id="hobby6" value="전시/박람회" onclick="goHobbyBox()"> 전시/박람회 <br>
+	<input type="checkbox" id="hobby7" value="이벤트/파티" onclick="goHobbyBox()"> 이벤트/파티 <br>
+	<input type="checkbox" id="hobby8" value="패션/뷰티" onclick="goHobbyBox()"> 패션/뷰티 <br>
+	<input type="checkbox" id="hobby9" value="기타" onclick="goHobbyBox()"> 기타 <br>
 	
 	<!-- 홈이나 다른곳으로 이동하기위한 단추 -->
 	<!-- 취소 버튼을 누르면 어디로 이동 할 것인가? -->
 	<button onclick="location.href='home'">취소</button>
 	<button onclick="location.href='signupAction'">다음</button>
 </body>
+
+	<script>
+		function goHobbyBox(){
+			console.log(document.getElementById());
+		}
+	</script>
+
+	<script>
+	// 현재 문제점 : 시도 셀렉트 창을 선택시, 1:1 대응으로 군구 셀렉트 창이 대응되지 않는다.
+	// 현재 단추는 제대로 인식함.
+	// 그리고 3개까지 설정해야하는데 3개까지 설정 못함.
+	function add(){
+			let id = document.getElementById("locationAdd");
+				id.innerHTML += "<button onclick='add()'>+</button>	<select id='location' onchange='addSelect(this)'>" +
+								"<option>--도시를 선택해주세요--</option>" +
+								"<option value='1'>서울특별시</option>"+
+								"<option value='2'>경기도</option>"+
+								"<option value='3'>대구광역시</option>"+
+								"<option value='4'>인천광역시</option>"+
+								"<option value='5'>광주광역시</option>"+
+								"<option value='6'>대전광역시</option>"+
+								"<option value='7'>울산광역시</option>"+
+								"</select> <select id='locationSub'><option>--지역구를 선택해주세요</option></select><br>";
+		
+	}
+	
+	function addSelect(e){
+		let city = new Array(["서울0","서울2","서울3"], ["경기1","겨ㅑㅇ기2","경기3"], ["대구2","대구2","대구3"], ["인천3","인천2","인천3"],
+					["광주4","광주2","광주3"], ["대전5","ㄷ애전2","대전3"], ["울산6","울산2","울산3"]);
+
+		let target = document.getElementById("locationSub");
+		var select = city[(e.value)*1];
+		
+		target.options.length = 0;
+		
+		for(var x in select){
+			let opt = document.createElement("option");
+			opt.value = select[x];
+			opt.innerHTML = select[x];
+			target.appendChild(opt);
+		}
+	}
+	</script>
+	
 </html>
+<%@include file="include/footer.jsp" %>

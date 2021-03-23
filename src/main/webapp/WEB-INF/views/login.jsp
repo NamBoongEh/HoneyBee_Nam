@@ -1,5 +1,6 @@
 <%@ page import="java.util.*" contentType="text/html; charset=UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
+<%@include file="include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,3 +22,4 @@
 
 </body>
 </html>
+<%@include file="include/footer.jsp" %>

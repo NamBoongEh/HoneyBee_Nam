@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,3 +11,4 @@
 	여기까지오다니 대애애애단하군
 </body>
 </html>
+<%@include file="include/footer.jsp" %>
